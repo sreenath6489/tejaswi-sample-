@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aesthetic Web Showcase & Testing Playground</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="A premium, interactive HTML template for design system testing, showcase, and component experimentation.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap"
+        rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Premium Modern Stylesheet */
+        :root {
+            --bg-gradient-dark: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #020617 100%);
+            --bg-gradient-light: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 50%, #f1f5f9 100%);
+
+            --card-bg-dark: rgba(30, 41, 59, 0.45);
+            --card-bg-light: rgba(255, 255, 255, 0.7);
+
+            --text-primary-dark: #f8fafc;
+            --text-primary-light: #0f172a;
+
+            --text-secondary-dark: #94a3b8;
+            --text-secondary-light: #475569;
+
+            --accent-primary: #6366f1;
+            /* Indigo */
+            --accent-secondary: #ec4899;
+            /* Pink */
+            --accent-glow: rgba(99, 102, 241, 0.15);
+
+            --border-dark: rgba(255, 255, 255, 0.08);
+            --border-light: rgba(99, 102, 241, 0.12);
+
+            --font-display: 'Outfit', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Default dark mode theme */
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            font-family: var(--font-body);
+            background: var(--bg-gradient-dark);
+            color: var(--text-primary-dark);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            overflow-x: hidden;
+            transition: var(--transition-smooth);
+        }
+
+        body.light-mode {
+            background: var(--bg-gradient-light);
+            color: var(--text-primary-light);
+        }
+
+        /* Navigation / Top Bar */
+        header {
+            width: 100%;
+            max-width: 1200px;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 8px 20px -6px var(--accent-primary);
+        }
+
+        .logo-text {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: -0.025em;
+        }
+
+        .theme-toggle {
+            background: var(--card-bg-dark);
+            border: 1px solid var(--border-dark);
+            color: inherit;
+            padding: 0.75rem;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-smooth);
+        }
+
+        body.light-mode .theme-toggle {
+            background: var(--card-bg-light);
+            border: 1px solid var(--border-light);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.05) rotate(15deg);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        /* Main Layout */
+        main {
+            width: 100%;
+            max-width: 1200px;
+            padding: 2rem;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            flex: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin: 0;
+            background: linear-gradient(135deg, #a5b4fc 0%, #ec4899 50%, #818cf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        body.light-mode .hero h1 {
+            background: linear-gradient(135deg, #4f46e5 0%, #db2777 50%, #4338ca 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            color: var(--text-secondary-dark);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        body.light-mode .hero p {
+            color: var(--text-secondary-light);
+        }
+
+        /* Cards Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg-dark);
+            border: 1px solid var(--border-dark);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 24px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        body.light-mode .card {
+            background: var(--card-bg-light);
+            border: 1px solid var(--border-light);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.04);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            opacity: 0;
+            transition: var(--transition-smooth);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        body.light-mode .card:hover {
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.08);
+            border-color: rgba(99, 102, 241, 0.2);
+        }
+
+        .card-title {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .card-title i {
+            color: var(--accent-primary);
+        }
+
+        .card p {
+            margin: 0;
+            color: var(--text-secondary-dark);
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+
+        body.light-mode .card p {
+            color: var(--text-secondary-light);
+        }
+
+        /* Interactive Elements inside Cards */
+        .interactive-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: auto;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--accent-primary) 0%, #4f46e5 100%);
+            color: white;
+            border: none;
+            padding: 0.875rem 1.5rem;
+            border-radius: 12px;
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+            transition: var(--transition-smooth);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid var(--border-dark);
+            color: inherit;
+            box-shadow: none;
+        }
+
+        body.light-mode .btn-secondary {
+            border: 1px solid var(--border-light);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(99, 102, 241, 0.08);
+            border-color: var(--accent-primary);
+            box-shadow: none;
+        }
+
+        /* Input Elements */
+        .input-group {
+            position: relative;
+        }
+
+        .text-input {
+            width: 100%;
+            background: rgba(15, 23, 42, 0.3);
+            border: 1px solid var(--border-dark);
+            padding: 0.875rem 1rem 0.875rem 2.5rem;
+            border-radius: 12px;
+            color: inherit;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            box-sizing: border-box;
+            transition: var(--transition-smooth);
+        }
+
+        body.light-mode .text-input {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid var(--border-light);
+        }
+
+        .text-input:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary-dark);
+            width: 18px;
+            height: 18px;
+        }
+
+        body.light-mode .input-icon {
+            color: var(--text-secondary-light);
+        }
+
+        /* Dynamic List */
+        .dynamic-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .list-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.875rem 1.25rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-dark);
+            border-radius: 12px;
+            transition: var(--transition-smooth);
+        }
+
+        body.light-mode .list-item {
+            background: rgba(0, 0, 0, 0.02);
+            border: 1px solid var(--border-light);
+        }
+
+        .list-item:hover {
+            background: rgba(99, 102, 241, 0.05);
+            border-color: rgba(99, 102, 241, 0.2);
+            transform: translateX(4px);
+        }
+
+        .list-item-text {
+            font-weight: 500;
+        }
+
+        .delete-item {
+            background: transparent;
+            border: none;
+            color: #ef4444;
+            cursor: pointer;
+            padding: 0.25rem;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-smooth);
+            opacity: 0.6;
+        }
+
+        .delete-item:hover {
+            background: rgba(239, 68, 68, 0.1);
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        /* Counter Demo */
+        .counter-value {
+            font-size: 3rem;
+            font-weight: 800;
+            font-family: var(--font-display);
+            text-align: center;
+            color: var(--accent-primary);
+            margin: 1rem 0;
+            text-shadow: 0 4px 12px var(--accent-glow);
+        }
+
+        .counter-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: -300px;
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid var(--accent-primary);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            z-index: 1000;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(12px);
+        }
+
+        .toast.show {
+            right: 2rem;
+        }
+
+        .toast-icon {
+            color: var(--accent-secondary);
+        }
+
+        /* Footer */
+        footer {
+            width: 100%;
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary-dark);
+            border-top: 1px solid var(--border-dark);
+            margin-top: auto;
+            box-sizing: border-box;
+        }
+
+        body.light-mode footer {
+            color: var(--text-secondary-light);
+            border-top: 1px solid var(--border-light);
+        }
+
+        @media (max-width: 640px) {
+            main {
+                padding: 1rem;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Top Navigation Header -->
+    <header>
+        <div class="logo-container">
+            <div class="logo-icon">
+                <i data-lucide="layers"></i>
+            </div>
+            <span class="logo-text">TestArena <span style="font-size: 0.8rem; font-weight: 400; opacity: 0.7; margin-left: 0.5rem; background: var(--accent-primary); color: white; padding: 0.15rem 0.5rem; border-radius: 9999px; vertical-align: middle;">Playground</span></span>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <a href="index.html" class="btn btn-secondary" style="text-decoration: none; padding: 0.5rem 1rem; font-size: 0.875rem;">
+                <i data-lucide="home" style="width: 14px; height: 14px;"></i> Back to Home
+            </a>
+            <button class="theme-toggle" id="themeToggleBtn" aria-label="Toggle light and dark mode">
+                <i data-lucide="sun" id="sunIcon" style="display: none;"></i>
+                <i data-lucide="moon" id="moonIcon"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main>
+        <!-- Hero / Title -->
+        <section class="hero">
+            <h1>Interactive Sandbox Playground</h1>
+            <p>Welcome to the component testing ground. Experiment with state managers, live mutations, and client telemetries below.</p>
+        </section>
+
+        <!-- Grid Container -->
+        <div class="grid">
+
+            <!-- Interactive Counter Card -->
+            <section class="card" id="counterCard">
+                <h2 class="card-title"><i data-lucide="plus-circle"></i> State Manager</h2>
+                <p>Test state preservation and UI reconciliation. Click buttons below to update active count.</p>
+                <div class="counter-value" id="counterDisplay">0</div>
+                <div class="interactive-container">
+                    <div class="counter-controls">
+                        <button class="btn btn-secondary" id="decrementBtn"><i data-lucide="minus"></i>
+                            Decrement</button>
+                        <button class="btn" id="incrementBtn"><i data-lucide="plus"></i> Increment</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Dynamic List Card -->
+            <section class="card" id="listCard">
+                <h2 class="card-title"><i data-lucide="list-todo"></i> Live Array Mutation</h2>
+                <p>Experiment with DOM manipulations by dynamically adding or removing values from the workspace array
+                    list.</p>
+
+                <div class="interactive-container">
+                    <div class="input-group">
+                        <i data-lucide="keyboard" class="input-icon"></i>
+                        <input type="text" class="text-input" id="itemInput" placeholder="Add custom item..."
+                            aria-label="Custom list item text">
+                    </div>
+
+                    <ul class="dynamic-list" id="itemList">
+                        <!-- Items injected by JS -->
+                    </ul>
+
+                    <button class="btn" id="addItemBtn"><i data-lucide="plus"></i> Add Item</button>
+                </div>
+            </section>
+
+            <!-- System Diagnostics Card -->
+            <section class="card" id="diagnosticsCard">
+                <h2 class="card-title"><i data-lucide="activity"></i> API & Client Diagnostics</h2>
+                <p>Retrieve system telemetry metrics. Verify browser-level object configurations and responsive state
+                    values.</p>
+
+                <div class="interactive-container" style="gap: 0.75rem;">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
+                        <span style="font-weight: 600;">Viewport:</span>
+                        <span id="viewportVal" style="color: var(--accent-primary); font-family: monospace;">---</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
+                        <span style="font-weight: 600;">Browser Engine:</span>
+                        <span id="browserVal" style="color: var(--accent-primary); font-family: monospace;">---</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
+                        <span style="font-weight: 600;">Connection Latency:</span>
+                        <span id="latencyVal"
+                            style="color: var(--accent-secondary); font-family: monospace;">Simulating...</span>
+                    </div>
+
+                    <button class="btn btn-secondary" id="triggerNotificationBtn" style="margin-top: 0.5rem;">
+                        <i data-lucide="bell"></i> Send Toast Alert
+                    </button>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Interactive Toast Notification -->
+    <div class="toast" id="toastAlert">
+        <i data-lucide="sparkles" class="toast-icon"></i>
+        <span id="toastMessage">Success! Playground is ready for testing.</span>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 TestArena Environment. Fully responsive, lightweight layout template designed with rich
+            aesthetics.</p>
+    </footer>
+
+    <!-- Interactivity Scripts -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // 1. Theme Manager
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+        const sunIcon = document.getElementById('sunIcon');
+        const moonIcon = document.getElementById('moonIcon');
+
+        themeToggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            const isLight = document.body.classList.contains('light-mode');
+
+            if (isLight) {
+                sunIcon.style.display = 'block';
+                moonIcon.style.display = 'none';
+                showToast('Switched to Light Theme');
+            } else {
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'block';
+                showToast('Switched to Dark Theme');
+            }
+        });
+
+        // 2. Counter Logic
+        let counterValue = 0;
+        const counterDisplay = document.getElementById('counterDisplay');
+        const incrementBtn = document.getElementById('incrementBtn');
+        const decrementBtn = document.getElementById('decrementBtn');
+
+        incrementBtn.addEventListener('click', () => {
+            counterValue++;
+            updateCounter();
+        });
+
+        decrementBtn.addEventListener('click', () => {
+            counterValue--;
+            updateCounter();
+        });
+
+        function updateCounter() {
+            counterDisplay.textContent = counterValue;
+            counterDisplay.style.transform = 'scale(1.15)';
+            setTimeout(() => {
+                counterDisplay.style.transform = 'scale(1)';
+            }, 100);
+        }
+
+        // 3. Dynamic List Mutation
+        const itemList = document.getElementById('itemList');
+        const itemInput = document.getElementById('itemInput');
+        const addItemBtn = document.getElementById('addItemBtn');
+
+        // Initial Seed Items
+        const seedItems = ['React Native Mocking', 'Responsive CSS Check', 'Tailwind Grid Compatibility'];
+        seedItems.forEach(item => addItem(item));
+
+        addItemBtn.addEventListener('click', () => {
+            const text = itemInput.value.trim();
+            if (text) {
+                addItem(text);
+                itemInput.value = '';
+                showToast(`Added: "${text}"`);
+            } else {
+                showToast('Input cannot be blank!', true);
+            }
+        });
+
+        itemInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                addItemBtn.click();
+            }
+        });
+
+        function addItem(text) {
+            const li = document.createElement('li');
+            li.className = 'list-item';
+
+            const span = document.createElement('span');
+            span.className = 'list-item-text';
+            span.textContent = text;
+
+            const button = document.createElement('button');
+            button.className = 'delete-item';
+            button.innerHTML = '<i data-lucide="trash-2" style="width:16px;height:16px;"></i>';
+            button.setAttribute('aria-label', `Delete item ${text}`);
+            button.onclick = () => {
+                li.style.opacity = '0';
+                li.style.transform = 'translateX(-20px)';
+                setTimeout(() => {
+                    li.remove();
+                    showToast(`Removed: "${text}"`);
+                }, 300);
+            };
+
+            li.appendChild(span);
+            li.appendChild(button);
+            itemList.appendChild(li);
+
+            // Initialize icons on dynamically added nodes
+            lucide.createIcons();
+        }
+
+        // 4. System Diagnostics Telemetry
+        function updateDiagnostics() {
+            document.getElementById('viewportVal').textContent = `${window.innerWidth}px × ${window.innerHeight}px`;
+
+            // Simple parser for browser
+            const ua = navigator.userAgent;
+            let browserName = "Unknown Browser";
+            if (ua.indexOf("Firefox") > -1) browserName = "Mozilla Firefox";
+            else if (ua.indexOf("SamsungBrowser") > -1) browserName = "Samsung Internet";
+            else if (ua.indexOf("Opera") > -1 || ua.indexOf("OPR") > -1) browserName = "Opera";
+            else if (ua.indexOf("Trident") > -1) browserName = "Internet Explorer";
+            else if (ua.indexOf("Edge") > -1 || ua.indexOf("Edg") > -1) browserName = "Microsoft Edge";
+            else if (ua.indexOf("Chrome") > -1) browserName = "Google Chrome";
+            else if (ua.indexOf("Safari") > -1) browserName = "Apple Safari";
+
+            document.getElementById('browserVal').textContent = browserName;
+        }
+
+        window.addEventListener('resize', updateDiagnostics);
+        updateDiagnostics();
+
+        // Simulating Connection Speed
+        setTimeout(() => {
+            const ping = Math.floor(Math.random() * 45) + 12;
+            document.getElementById('latencyVal').textContent = `${ping} ms`;
+        }, 1200);
+
+        // 5. Toast Notifications
+        const toastAlert = document.getElementById('toastAlert');
+        const toastMessage = document.getElementById('toastMessage');
+        const triggerNotificationBtn = document.getElementById('triggerNotificationBtn');
+        let toastTimeout;
+
+        function showToast(message, isWarning = false) {
+            clearTimeout(toastTimeout);
+            toastMessage.textContent = message;
+
+            if (isWarning) {
+                toastAlert.style.borderColor = '#ef4444';
+            } else {
+                toastAlert.style.borderColor = 'var(--accent-primary)';
+            }
+
+            toastAlert.classList.add('show');
+
+            toastTimeout = setTimeout(() => {
+                toastAlert.classList.remove('show');
+            }, 3000);
+        }
+
+        triggerNotificationBtn.addEventListener('click', () => {
+            const alerts = [
+                'All client systems operating nominal.',
+                'DOM layouts reconciled successfully.',
+                'Responsiveness benchmark standard check passed.',
+                'Diagnostics telemetry uploaded!'
+            ];
+            const randomAlert = alerts[Math.floor(Math.random() * alerts.length)];
+            showToast(randomAlert);
+        });
+
+        // Fire default toast greeting
+        setTimeout(() => {
+            showToast('Welcome to TestArena Playground!');
+        }, 800);
+    </script>
+</body>
+
+</html>
